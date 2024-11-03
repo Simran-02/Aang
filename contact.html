@@ -316,7 +316,7 @@
                                             </div>
                                         </div>
                                         <div class="mt-4">
-                                            <button type="submit" class="themeht-btn">Send Message</button>
+                                            <button type="submit" class="btn btn-primary">Send Message</button>
                                         </div>
                                     </form>
                                     <p id="form-response" style="display:none;">Thank you! Your message has been sent.</p>
@@ -507,9 +507,7 @@
                 <li class="theme-11" title="theme-11" data-style="color-11"></li>
                 <li class="theme-12" title="theme-12" data-style="color-12"></li>
             </ul>
-            <div class="text-center mt-4">
-                <a class="themeht-btn" href="#">Purchase Now</a>
-            </div>
+
         </div>
     </div>
 
@@ -559,29 +557,19 @@
     <!--== theme-script -->
     <script src="js/theme-script.js"></script>
     <script>
-        function submitToGoogleForms(event) {
+        document.getElementById("contact-form").addEventListener("submit", function(event) {
             event.preventDefault();
 
             const googleFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLScuv6n7RoMbC8zdpenzSvd18kcFgCC49iGb2Z6oa6G_DecE0w/formResponse";
 
             const formData = new FormData();
-            const firstName = document.getElementById("first-name").value;
-            const lastName = document.getElementById("last-name").value;
-            const email = document.getElementById("email").value;
-            const phone = document.getElementById("phone").value;
-            const message = document.getElementById("message").value;
+            formData.append("entry.XXXXXXXXXX", document.getElementById("first-name").value); // Replace with actual ID
+            formData.append("entry.YYYYYYYYYY", document.getElementById("last-name").value); // Replace with actual ID
+            formData.append("entry.ZZZZZZZZZZ", document.getElementById("email").value); // Replace with actual ID
+            formData.append("entry.AAAAAAAAAA", document.getElementById("phone").value); // Replace with actual ID
+            formData.append("entry.BBBBBBBBBB", document.getElementById("message").value); // Replace with actual ID
 
-            console.log("First Name:", firstName); // Debug
-            console.log("Last Name:", lastName); // Debug
-            console.log("Email:", email); // Debug
-            console.log("Phone:", phone); // Debug
-            console.log("Message:", message); // Debug
 
-            formData.append("entry.XXXXXX", firstName); // Replace with actual ID
-            formData.append("entry.YYYYYY", lastName); // Replace with actual ID
-            formData.append("entry.ZZZZZZ", email); // Replace with actual ID
-            formData.append("entry.AAAAAA", phone); // Replace with actual ID
-            formData.append("entry.BBBBBB", message); // Replace with actual ID
 
             fetch(googleFormUrl, {
                     method: "POST",
@@ -589,14 +577,15 @@
                     body: formData
                 })
                 .then(() => {
-                    document.getElementById("contact-form").reset();
                     alert("Thank you! Your message has been sent.");
+                    document.getElementById("contact-form").reset();
                 })
                 .catch(error => {
                     console.error("Error!", error.message);
                 });
-        }
+        });
     </script>
+
 
 
     <!-- inject js end -->
