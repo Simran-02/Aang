@@ -273,16 +273,67 @@
         </form>
       </div>
     </div> -->
-                    <div class="row align-items-center">
+                    <section>
+                        <div class="container">
+                            <div class="row justify-content-center text-center">
+                                <div class="col-lg-8 col-md-12">
+                                    <div class="theme-title">
+                                        <h6>Get In Touch</h6>
+                                        <h2>Stay Contacted with Us</h2>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row align-items-center">
+                                <div class="col-lg-5 me-auto">
+                                    <img class="img-fluid" src="images/contact-img.png" alt="Contact Us">
+                                </div>
+                                <div class="col-lg-6 mt-7 mt-lg-0">
+                                    <form id="contact-form">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label for="first-name">First Name</label>
+                                                <input type="text" id="first-name" name="firstName" class="form-control" placeholder="First Name" required>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="last-name">Last Name</label>
+                                                <input type="text" id="last-name" name="lastName" class="form-control" placeholder="Last Name" required>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label for="email">Email</label>
+                                                <input type="email" id="email" name="email" class="form-control" placeholder="Email Address" required>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="phone">Phone</label>
+                                                <input type="tel" id="phone" name="phone" class="form-control" placeholder="Phone Number" required>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <label for="message">Message</label>
+                                                <textarea id="message" name="message" class="form-control" placeholder="Your Message" rows="4" required></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="mt-4">
+                                            <button type="submit" class="themeht-btn">Send Message</button>
+                                        </div>
+                                    </form>
+                                    <p id="form-response" style="display:none;">Thank you! Your message has been sent.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- <div class="row align-items-center">
                         <div class="col-lg-5 me-auto">
                             <img class="img-fluid" src="images/contact-img.png" alt="">
                         </div>
                         <div class="col-lg-6 mt-7 mt-lg-0">
                             <h3>Contact Us</h3>
-                            <!-- Optional: Add a heading for clarity -->
                             <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfuSvZuTbFY6SsI-2rYR0rKRs4KWJP8WBf1QjWgNACa0XtiCA/viewform?usp=sf_link" width="100%" height="600" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
-                        </div>
-                    </div>
+                        </div> -->
+                    <!-- </div> -->
 
                 </div>
             </section>
@@ -507,6 +558,45 @@
 
     <!--== theme-script -->
     <script src="js/theme-script.js"></script>
+    <script>
+        function submitToGoogleForms(event) {
+            event.preventDefault();
+
+            const googleFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLScuv6n7RoMbC8zdpenzSvd18kcFgCC49iGb2Z6oa6G_DecE0w/formResponse";
+
+            const formData = new FormData();
+            const firstName = document.getElementById("first-name").value;
+            const lastName = document.getElementById("last-name").value;
+            const email = document.getElementById("email").value;
+            const phone = document.getElementById("phone").value;
+            const message = document.getElementById("message").value;
+
+            console.log("First Name:", firstName); // Debug
+            console.log("Last Name:", lastName); // Debug
+            console.log("Email:", email); // Debug
+            console.log("Phone:", phone); // Debug
+            console.log("Message:", message); // Debug
+
+            formData.append("entry.XXXXXX", firstName); // Replace with actual ID
+            formData.append("entry.YYYYYY", lastName); // Replace with actual ID
+            formData.append("entry.ZZZZZZ", email); // Replace with actual ID
+            formData.append("entry.AAAAAA", phone); // Replace with actual ID
+            formData.append("entry.BBBBBB", message); // Replace with actual ID
+
+            fetch(googleFormUrl, {
+                    method: "POST",
+                    mode: "no-cors",
+                    body: formData
+                })
+                .then(() => {
+                    document.getElementById("contact-form").reset();
+                    alert("Thank you! Your message has been sent.");
+                })
+                .catch(error => {
+                    console.error("Error!", error.message);
+                });
+        }
+    </script>
 
 
     <!-- inject js end -->
