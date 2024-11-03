@@ -414,7 +414,7 @@ span,
 .navbar-brand {
     margin: 0;
     padding: 0;
-    font-size: 2.8rem;
+    font-size: 27px;
     line-height: 1;
     color: var(--themeht-text-color);
     font-family: var(--themeht-secondary-font-family);
